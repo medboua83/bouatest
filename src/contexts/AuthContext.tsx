@@ -35,13 +35,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    if (error) throw error;
-    navigate('/');
-  };
+  // WARNING: This is for testing/demo purposes ONLY.
+  // It bypasses real authentication and accepts any credentials.
+  setUser({ id: 'dummy-id', email } as User); // Cast as User or adjust accordingly
+  navigate('/');
+ };
 
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
